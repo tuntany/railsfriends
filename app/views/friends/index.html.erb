@@ -1,0 +1,42 @@
+
+<% if user_signed_in? %>
+
+  <h1>Friends List</h1>
+  <table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
+
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Twitter</th>
+      
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @friends.each do |friend| %>
+      <% if friend.user == current_user %>
+        <tr>
+          <td><%= link_to friend.first_name + ' ' + friend.last_name, friend %></td>
+          <td><%= friend.email %></td>
+          <td><%= friend.phone %></td>
+          <td><%= friend.twitter %></td>
+        </tr>
+        <% end %>
+
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New Friend', new_friend_path, class:"btn btn-secondary" %>
+
+<% else %>
+
+  </br.>
+  <h1>Hello fellow human!</h1>
+    <p>Welcome to the Friends website. Here you can find a list of your friends details for you to keep up with your friends network. Just be sure not to be creepy with collecting all the data. Remember, consent is the key! Be it friends data or research data. Have fun!</p>
+
+<% end %>
